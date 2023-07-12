@@ -6,6 +6,16 @@ export interface User {
 }
 
 export interface DetailUser {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  phone: string;
+  website: string;
+  address: Address;
+  company: Company;
+}
+export interface FilterUser {
   id?: number;
   name?: string;
   username?: string;

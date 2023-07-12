@@ -4,7 +4,7 @@ import { ConfigUrls, Urls } from './config-urls';
 import { Album } from './interfaces/album';
 import { Post } from './interfaces/post';
 import { TODO } from './interfaces/todo';
-import { DetailUser, User } from './interfaces/user';
+import { DetailUser, FilterUser, User } from './interfaces/user';
 
 @Injectable({
   providedIn: 'root',
@@ -40,8 +40,8 @@ export class RestUsersService extends ConfigUrls {
     return this.delete<DetailUser>(Urls.users, id);
   }
 
-  filterUser(filters: DetailUser): Observable<DetailUser[]> {
-    return this.filter<DetailUser, DetailUser[]>(Urls.users, filters);
+  filterUser(filters: FilterUser): Observable<DetailUser[]> {
+    return this.filter<FilterUser, DetailUser[]>(Urls.users, filters);
   }
 
   /* Catálogos de usuario */

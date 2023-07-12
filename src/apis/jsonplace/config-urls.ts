@@ -68,7 +68,7 @@ export class ConfigUrls {
       queryString += `${f}=${(filters as any)[f]}&`;
     });
     queryString = queryString.substring(0, queryString.length - 1);
-    return this.comunActions<U>(url, 'GET');
+    return this.comunActions<U>(url + queryString, 'GET');
   }
 }
 
