@@ -74,6 +74,12 @@ export class UserScreenComponent implements OnInit {
       console.log('Usuario Borrado', user);
     });
   }
+  filtrar() {
+    const filtros = {
+
+    }
+  this._restUser.filter()
+  }
 
   // Catalogo
   getUserAlbum(id: number) {

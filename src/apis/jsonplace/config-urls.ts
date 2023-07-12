@@ -49,22 +49,23 @@ export class ConfigUrls {
   get<U>(url: string, id?: number): Observable<U> {
     return this.comunActions<U>(url, 'GET', id);
   }
+
   post<U>(url: string, body: U): Observable<U> {
     return this.comunActions<U>(url, 'POST', body);
   }
+
   put<U>(url: string, body: U): Observable<U> {
     return this.comunActions<U>(url, 'PUT', body);
   }
+
   delete<U>(url: string, id: number): Observable<U> {
     return this.comunActions<U>(url, 'DELETE', id);
   }
-  filter<U>(
-    url: string,
-    filters: { name: string; filter: string }[]
-  ): Observable<U> {
+
+  filter<E, U>(url: string, filters: E): Observable<U> {
     let queryString = `?`;
-    filters.forEach((f) => {
-      queryString += `${f.name}=${f.filter}&`;
+    Object.keys(filters as Object).forEach((f) => {
+      queryString += `${f}=${(filters as any)[f]}&`;
     });
     queryString = queryString.substring(0, queryString.length - 1);
     return this.comunActions<U>(url, 'GET');

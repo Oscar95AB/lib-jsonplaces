@@ -40,6 +40,10 @@ export class RestUsersService extends ConfigUrls {
     return this.delete<DetailUser>(Urls.users, id);
   }
 
+  filterUser(filters: User): Observable<User[]> {
+    return this.filter<User, User[]>(Urls.users, filters);
+  }
+
   /* Catálogos de usuario */
 
   getUserAlbum(userId: number): Observable<Album> {
