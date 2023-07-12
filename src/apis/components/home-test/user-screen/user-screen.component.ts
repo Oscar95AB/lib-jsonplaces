@@ -76,7 +76,13 @@ export class UserScreenComponent implements OnInit {
   }
   filtrar() {
     const filtros = {
-      phone: "493-170-9623 x156"
+      address: {
+        geo: {
+          lat: '-37.3159',
+          lng: '81.1496',
+        },
+      },
+
     };
     this._restUser.filterUser(filtros).subscribe((user) => {
       console.log('Usuarios Filtrado', user);

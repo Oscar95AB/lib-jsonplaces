@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConfigUrls, Urls } from './config-urls';
 import { Album } from './interfaces/album';
+import { FilterUser } from './interfaces/filters/filter-user';
 import { Post } from './interfaces/post';
 import { TODO } from './interfaces/todo';
-import { DetailUser, FilterUser, User } from './interfaces/user';
+import { DetailUser } from './interfaces/user';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +18,8 @@ export class RestUsersService extends ConfigUrls {
    *  Get all users frrm JSONplaceholder
    */
 
-  getAllUsers(): Observable<User[]> {
-    return this.get<User[]>(Urls.users);
+  getAllUsers(): Observable<DetailUser[]> {
+    return this.get<DetailUser[]>(Urls.users);
   }
 
   /**
