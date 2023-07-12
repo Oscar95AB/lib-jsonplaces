@@ -1,0 +1,14 @@
+<h3>POSTS</h3>
+<ul>
+  <li *ngFor="let post of listPosts">
+    {{ post.title }}
+    <button (click)="getPost(post.id)">VER</button>
+    <button (click)="putPost()">MMODIFICAR</button>
+    <button (click)="deletePost(post.id)">BORRAR</button>
+    <!--<button (click)="getUserAlbum(user.id)">Catálogo</button>
+    <button (click)="getUserTodo(user.id)">TODOS</button>
+    <button (click)="getUserPosts(user.id)">Post</button>
+    <button (click)="getUserComments(user.id)">Comentarios</button> -->
+  </li>
+</ul>
+<button (click)="postPost()">Alta Post</button>

@@ -11,25 +11,25 @@ export class RestPostService extends ConfigUrls {
   }
 
   getAllPosts(): Observable<Post[]> {
-    return this.comunActions<Post[]>(Urls.posts, 'G');
+    return this.get<Post[]>(Urls.posts);
   }
 
   getPostId(id: number): Observable<Post> {
-    return this.comunActions<Post>(Urls.posts, 'G', id);
+    return this.get<Post>(Urls.posts, id);
   }
 
-  // postUser(user: DetailUser): Observable<DetailUser> {
-  //   user = { ...user, id: 0 };
-  //   return this.comunActions<DetailUser>(Urls.users, 'POST', user);
-  // }
-  // putUser(user: DetailUser): Observable<DetailUser> {
-  //   return this.comunActions<DetailUser>(Urls.users, 'PUT', user);
-  // }
-  // deleteUser(id: number): Observable<DetailUser> {
-  //   return this.comunActions<DetailUser>(Urls.users, 'DELETE', id);
-  // }
+  postPost(post: Post): Observable<Post> {
+    post = { ...post, id: 0 };
+    return this.post<Post>(Urls.posts, post);
+  }
+  putPost(post: Post): Observable<Post> {
+    return this.put<Post>(Urls.posts, post);
+  }
+  deleteUser(id: number): Observable<Post> {
+    return this.delete<Post>(Urls.users, id);
+  }
 
-  // /* Catálogos de usuario */
+  /* Catálogos de Posts */
 
   // getUserAlbum(userId: number): Observable<DetailUser> {
   //   const url = Urls.users + userId + Urls.albums;

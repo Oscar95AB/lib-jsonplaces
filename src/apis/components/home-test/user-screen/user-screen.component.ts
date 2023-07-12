@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RestPostService } from './../../../apis/jsonplace/rest-post.service';
-import { DetailUser } from './../../../apis/jsonplace/interfaces/user';
-import { RestUsersService } from './../../../apis/jsonplace/rest-user.service';
+import { DetailUser } from './../../../../apis/jsonplace/interfaces/user';
+import { RestUsersService } from './../../../../apis/jsonplace/rest-user.service';
 import { forkJoin } from 'rxjs';
 
 @Component({
@@ -15,16 +14,13 @@ import { forkJoin } from 'rxjs';
 export class UserScreenComponent implements OnInit {
   listUsers: DetailUser[] = [];
   listPosts: any[] = [];
-  constructor(
-    private _restUser: RestUsersService,
-    private _restPost: RestPostService
-  ) {
+  constructor(private _restUser: RestUsersService) {
     forkJoin({
       users: this._restUser.getAllUsers(),
-      posts: this._restPost.getAllPosts(),
+      // posts: this._restPost.getAllPosts(),
     }).subscribe((resp) => {
       this.listUsers = resp.users as any;
-      this.listPosts = resp.posts;
+      // this.listPosts = resp.posts;
     });
   }
 
@@ -101,11 +97,5 @@ export class UserScreenComponent implements OnInit {
     });
   }
 
-  // POsts
-  getPost(id: number) {
-    this._restPost.getPostId(id).subscribe((post) => {
-      console.log('Post:' + id, post);
-    });
-  }
   ngOnInit() {}
 }

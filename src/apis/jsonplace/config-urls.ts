@@ -13,7 +13,7 @@ export class ConfigUrls {
    *
    * Comun method to do actions as GET/POST/PUT/DELETE sending interface and return the same interface
    */
-  private comunActions<U extends { id: number }>(
+  private comunActions<U>(
     url: string,
     method: 'POST' | 'PUT' | 'GET' | 'DELETE',
     body?: U | number
@@ -25,7 +25,7 @@ export class ConfigUrls {
       id = body;
       body = undefined;
     } else if (method === 'PUT') {
-      id = body?.id;
+      id = (body as any)?.id;
     }
     // variables for Url and body request params
     const formatUrl = this.baseUrl + url + (id ? id : '');
@@ -46,17 +46,28 @@ export class ConfigUrls {
       .pipe(take(1));
   }
 
-  get<U extends { id: number }>(url: string, id?: number): Observable<U> {
+  get<U>(url: string, id?: number): Observable<U> {
     return this.comunActions<U>(url, 'GET', id);
   }
-  post<U extends { id: number }>(url: string, body: U): Observable<U> {
-    return this.comunActions<U>(url, 'POST', { ...body, id: 0 });
+  post<U>(url: string, body: U): Observable<U> {
+    return this.comunActions<U>(url, 'POST', body);
   }
-  put<U extends { id: number }>(url: string, body: U): Observable<U> {
+  put<U>(url: string, body: U): Observable<U> {
     return this.comunActions<U>(url, 'PUT', body);
   }
-  delete<U extends { id: number }>(url: string, id: number): Observable<U> {
+  delete<U>(url: string, id: number): Observable<U> {
     return this.comunActions<U>(url, 'DELETE', id);
+  }
+  filter<U>(
+    url: string,
+    filters: { name: string; filter: string }[]
+  ): Observable<U> {
+    let queryString = `?`;
+    filters.forEach((f) => {
+      queryString += `${f.name}=${f.filter}&`;
+    });
+    queryString = queryString.substring(0, queryString.length - 1);
+    return this.comunActions<U>(url, 'GET');
   }
 }
 
