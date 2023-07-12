@@ -59,4 +59,9 @@ export class PostScreenComponent implements OnInit {
       console.log('Delete post:' + id, post);
     });
   }
+  getPostComments(id: number) {
+    this._restPost.getPostComments(id).subscribe((comments) => {
+      console.log('Comments del Post:' + id, comments);
+    });
+  }
 }

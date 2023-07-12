@@ -6,12 +6,33 @@ import { switchMap } from 'rxjs/operators';
 export class ConfigUrls {
   readonly baseUrl = 'https://jsonplaceholder.typicode.com';
 
+  get<U>(url: string, id?: number): Observable<U> {
+    return this.comunActions<U>(url, 'GET', id);
+  }
+
+  post<U>(url: string, body: U): Observable<U> {
+    return this.comunActions<U>(url, 'POST', body);
+  }
+
+  put<U>(url: string, body: U): Observable<U> {
+    return this.comunActions<U>(url, 'PUT', body);
+  }
+
+  delete<U>(url: string, id: number): Observable<U> {
+    return this.comunActions<U>(url, 'DELETE', id);
+  }
+
+  filter<E, U>(url: string, filters: E): Observable<U> {
+    const queryString = '?' + this.filterLoop(filters);
+    return this.comunActions<U>(url + queryString, 'GET');
+  }
+
   /**
    * @param url required, can be  Urls.xxx or '/users/1/posts'
    * @param method required, acción que hacer a fakeApi
    * @param body optional, object to send in body or id to do action
    *
-   * Comun method to do actions as GET/POST/PUT/DELETE sending interface and return the same interface
+   * Comun method to do actions such as GET/POST/PUT/DELETE sending interface and return the same interface
    */
   private comunActions<U>(
     url: string,
@@ -46,27 +67,6 @@ export class ConfigUrls {
       .pipe(take(1));
   }
 
-  get<U>(url: string, id?: number): Observable<U> {
-    return this.comunActions<U>(url, 'GET', id);
-  }
-
-  post<U>(url: string, body: U): Observable<U> {
-    return this.comunActions<U>(url, 'POST', body);
-  }
-
-  put<U>(url: string, body: U): Observable<U> {
-    return this.comunActions<U>(url, 'PUT', body);
-  }
-
-  delete<U>(url: string, id: number): Observable<U> {
-    return this.comunActions<U>(url, 'DELETE', id);
-  }
-
-  filter<E, U>(url: string, filters: E): Observable<U> {
-    const queryString = '?' + this.filterLoop(filters);
-    return this.comunActions<U>(url + queryString, 'GET');
-  }
-
   private filterLoop<U>(
     filters: U,
     parent: string = '',
@@ -89,6 +89,6 @@ export enum Urls {
   posts = '/posts/',
   comments = '/comments/',
   albums = '/albums/',
-  fotos = '/fotos/',
+  fotos = '/photos/',
   todos = '/todos/',
 }

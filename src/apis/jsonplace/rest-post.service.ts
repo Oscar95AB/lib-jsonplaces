@@ -25,26 +25,14 @@ export class RestPostService extends ConfigUrls {
   putPost(post: Post): Observable<Post> {
     return this.put<Post>(Urls.posts, post);
   }
-  deleteUser(id: number): Observable<Post> {
-    return this.delete<Post>(Urls.users, id);
+  deletePost(id: number): Observable<Post> {
+    return this.delete<Post>(Urls.posts, id);
   }
 
   /* Catálogos de Posts */
 
-  // getUserAlbum(userId: number): Observable<DetailUser> {
-  //   const url = Urls.users + userId + Urls.albums;
-  //   return this.comunActions<DetailUser>(url, 'GET');
-  // }
-  // getUserTodo(userId: number) {
-  //   const url = Urls.users + userId + Urls.todos;
-  //   return this.comunActions<DetailUser>(url, 'GET');
-  // }
-  // getUserPosts(userId: number) {
-  //   const url = Urls.users + userId + Urls.posts;
-  //   return this.comunActions<DetailUser>(url, 'GET');
-  // }
-  // getUserComments(userId: number) {
-  //   const url = Urls.users + userId + Urls.comments
-  //   return this.comunActions<Comment[]>(url, 'GET');
-  // }
+  getPostComments(postId: number) {
+    const url = Urls.posts + postId + Urls.comments;
+    return this.get<Comment[]>(url);
+  }
 }

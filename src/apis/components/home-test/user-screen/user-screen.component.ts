@@ -82,7 +82,6 @@ export class UserScreenComponent implements OnInit {
           lng: '81.1496',
         },
       },
-
     };
     this._restUser.filterUser(filtros).subscribe((user) => {
       console.log('Usuarios Filtrado', user);

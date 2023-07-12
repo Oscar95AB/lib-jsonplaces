@@ -1,5 +1,6 @@
 <h3>USUARIOS</h3>
 <button (click)="filtrar()">Buscar</button>
+<button (click)="postUser()">Alta usuario</button>
 <ul>
   <li *ngFor="let user of listUsers">
     {{ user.name }}
@@ -12,4 +13,4 @@
     <button (click)="getUserComments(user.id)">Comentarios</button>
   </li>
 </ul>
-<button (click)="postUser()">Alta usuario</button>
+

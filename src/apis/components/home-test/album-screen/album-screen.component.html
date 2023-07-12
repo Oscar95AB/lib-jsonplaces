@@ -1,0 +1,11 @@
+<h3>Albums</h3>
+<ul>
+  <li *ngFor="let album of listAlbums">
+    {{ album.title }}
+    <button (click)="getAlbum(album.id)">VER</button>
+    <!--<button (click)="putPost()">MMODIFICAR</button>
+    <button (click)="deletePost(album.id)">BORRAR</button>
+    <button (click)="getPostComments(album.id)">Comentarios</button> -->
+  </li>
+</ul>
+<!-- <button (click)="postPost()">Alta Post</button> -->
