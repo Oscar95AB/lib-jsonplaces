@@ -6,14 +6,14 @@ export interface User {
 }
 
 export interface DetailUser {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  phone: string;
-  website: string;
-  address: Address;
-  company: Company;
+  id?: number;
+  name?: string;
+  username?: string;
+  email?: string;
+  phone?: string;
+  website?: string;
+  address?: Address;
+  company?: Company;
 }
 
 export interface Company {

@@ -76,9 +76,14 @@ export class UserScreenComponent implements OnInit {
   }
   filtrar() {
     const filtros = {
-
-    }
-  this._restUser.filter()
+      id: 1,
+      name: 'string',
+      username: 'string',
+      email: 'string',
+      phone: 'string',
+      website: 'string',
+    };
+    //this._restUser.filterUser(filtros).subs
   }
 
   // Catalogo
