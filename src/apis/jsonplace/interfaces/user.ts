@@ -15,16 +15,6 @@ export interface DetailUser {
   address: Address;
   company: Company;
 }
-export interface FilterUser {
-  id?: number;
-  name?: string;
-  username?: string;
-  email?: string;
-  phone?: string;
-  website?: string;
-  address?: Address;
-  company?: Company;
-}
 
 export interface Company {
   name: string;
@@ -43,4 +33,23 @@ export interface Address {
 export interface Geo {
   lat: string;
   lng: string;
+}
+
+export interface FilterUser {
+  id?: number;
+  name?: string;
+  username?: string;
+  email?: string;
+  phone?: string;
+  website?: string;
+  address?: FilterAddress;
+  // company?: Company;
+}
+
+export interface FilterAddress {
+  street?: string;
+  suite?: string;
+  city?: string;
+  zipcode?: string;
+  // geo: Geo;
 }

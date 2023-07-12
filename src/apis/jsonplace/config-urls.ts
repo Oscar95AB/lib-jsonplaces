@@ -63,12 +63,20 @@ export class ConfigUrls {
   }
 
   filter<E, U>(url: string, filters: E): Observable<U> {
-    let queryString = `?`;
+    const queryString = 
+    return this.comunActions<U>(url + '?' + this.filterLoop(filters), 'GET');
+  }
+
+  private filterLoop<U>(filters: U, queryString: string = ''): string {
     Object.keys(filters as Object).forEach((f) => {
-      queryString += `${f}=${(filters as any)[f]}&`;
+      const value = (filters as any)[f];
+      if (typeof value === 'object') {
+        queryString += this.filterLoop<any>(value) + '&';
+      } else {
+        queryString += `${f}=${value}&`;
+      }
     });
-    queryString = queryString.substring(0, queryString.length - 1);
-    return this.comunActions<U>(url + queryString, 'GET');
+    return queryString.substring(0, queryString.length - 1);
   }
 }
 
