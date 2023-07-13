@@ -4,28 +4,7 @@ import { fromPromise } from 'rxjs/internal/observable/innerFrom';
 import { switchMap } from 'rxjs/operators';
 
 export class ConfigUrls {
-  readonly baseUrl = 'https://jsonplaceholder.typicode.com';
-
-  get<U>(url: string, id?: number): Observable<U> {
-    return this.comunActions<U>(url, 'GET', id);
-  }
-
-  post<U>(url: string, body: U): Observable<U> {
-    return this.comunActions<U>(url, 'POST', body);
-  }
-
-  put<U>(url: string, body: U): Observable<U> {
-    return this.comunActions<U>(url, 'PUT', body);
-  }
-
-  delete<U>(url: string, id: number): Observable<U> {
-    return this.comunActions<U>(url, 'DELETE', id);
-  }
-
-  filter<E, U>(url: string, filters: E): Observable<U> {
-    const queryString = '?' + this.filterLoop(filters);
-    return this.comunActions<U>(url + queryString, 'GET');
-  }
+  private readonly baseUrl = 'https://jsonplaceholder.typicode.com';
 
   /**
    * @param url required, can be  Urls.xxx or '/users/1/posts'
@@ -81,6 +60,27 @@ export class ConfigUrls {
       }
     });
     return queryString.substring(0, queryString.length - 1);
+  }
+
+  protected get<U>(url: string, id?: number): Observable<U> {
+    return this.comunActions<U>(url, 'GET', id);
+  }
+
+  protected post<U>(url: string, body: U): Observable<U> {
+    return this.comunActions<U>(url, 'POST', body);
+  }
+
+  protected put<U>(url: string, body: U): Observable<U> {
+    return this.comunActions<U>(url, 'PUT', body);
+  }
+
+  protected delete<U>(url: string, id: number): Observable<U> {
+    return this.comunActions<U>(url, 'DELETE', id);
+  }
+
+  protected filter<E, U>(url: string, filters: E): Observable<U> {
+    const queryString = '?' + this.filterLoop(filters);
+    return this.comunActions<U>(url + queryString, 'GET');
   }
 }
 

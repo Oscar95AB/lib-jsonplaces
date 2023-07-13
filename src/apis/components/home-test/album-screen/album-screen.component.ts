@@ -32,36 +32,34 @@ export class AlbumScreenComponent implements OnInit {
       console.log('get album:' + id, album);
     });
   }
-  // postPost() {
-  //   const post: Post = {
-  //     body: 'prueba',
-  //     id: 0,
-  //     title: 'prueba',
-  //     userId: 1,
-  //   };
-  //   this._restAlbum.postPost(post).subscribe((postResp) => {
-  //     console.log('Post post:' + post.body, postResp);
-  //   });
-  // }
-  // putPost() {
-  //   const post: Post = {
-  //     body: 'prueba',
-  //     id: 1,
-  //     title: 'prueba',
-  //     userId: 1,
-  //   };
-  //   this._restAlbum.putPost(post).subscribe((postResp) => {
-  //     console.log('Put post:' + post, postResp);
-  //   });
-  // }
-  // deletePost(id: number) {
-  //   this._restAlbum.getPostId(id).subscribe((post) => {
-  //     console.log('Delete post:' + id, post);
-  //   });
-  // }
-  // getPostComments(id: number) {
-  //   this._restAlbum.getPostComments(id).subscribe((comments) => {
-  //     console.log('Comments del Post:' + id, comments);
-  //   });
-  // }
+  postAlbum() {
+    const album: Album = {
+      id: 0,
+      title: 'prueba',
+      userId: 1,
+    };
+    this._restAlbum.postAlbum(album).subscribe((albumtResp) => {
+      console.log('Post post:' + album.title, albumtResp);
+    });
+  }
+  putAlbum() {
+    const album: Album = {
+      id: 1,
+      title: 'prueba',
+      userId: 1,
+    };
+    this._restAlbum.putAlbum(album).subscribe((albumtResp) => {
+      console.log('Put post:' + album, albumtResp);
+    });
+  }
+  deletePost(id: number) {
+    this._restAlbum.deleteAlbum(id).subscribe((album) => {
+      console.log('Delete album:' + id, album);
+    });
+  }
+  getAlbumPhotos(id: number) {
+    this._restAlbum.getAlbumPhotos(id).subscribe((photos) => {
+      console.log('Photos del Album:' + id, photos);
+    });
+  }
 }
